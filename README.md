@@ -13,10 +13,10 @@ If you are seeing this repo and unable to do changes or comment (as it's private
 #### Please execute datafetch notebook before executing other notebooks
 
 #### Team Members
-Sharan Raj Sivakumar 50604183
-Apurva Umredkar 50592382
-Saksham Lakhera 50611360
-Rama Rao Vydadi 50604256
+##### Sharan Raj Sivakumar 50604183
+##### Apurva Umredkar 50592382
+##### Saksham Lakhera 50611360
+##### Rama Rao Vydadi 50604256
 
 #### Problem Statement :
 This analysis aims to uncover potential causes of mental health disorders by examining the behavioral patterns and histories of affected patients, ### leading to insights for better interventions.

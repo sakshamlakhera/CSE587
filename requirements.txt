@@ -1,5 +1,8 @@
 appnope
 asttokens
+attrs
+certifi
+charset-normalizer
 comm
 contourpy
 cycler
@@ -7,16 +10,21 @@ debugpy
 decorator
 et-xmlfile
 executing
+fastjsonschema
 fonttools
+idna
 ipykernel
 ipython
 jedi
+jsonschema
+jsonschema-specifications
 jupyter_client
 jupyter_core
 kiwisolver
 matplotlib
 matplotlib-inline
 missingno
+nbformat
 nest-asyncio
 numpy
 openpyxl
@@ -37,6 +45,9 @@ pyparsing
 python-dateutil
 pytz
 pyzmq
+referencing
+requests
+rpds-py
 scipy
 seaborn
 six
@@ -45,4 +56,5 @@ tenacity
 tornado
 traitlets
 tzdata
+urllib3
 wcwidth

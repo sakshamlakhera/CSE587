@@ -7,3 +7,7 @@ If you are seeing this repo and unable to do changes or comment (as it's private
 ##### NOTE: Do NOT directly commit to develop Branch
 ##### For changes create a branch with name features/<task_id>_<task_info>, bugs/<task_id>_<task_info>. 
 ##### Task_ID Will be based on work assignment and task info is the brief info regarding what is the feature or bug. I'm unable to enforce this rule because it's only available to paid user
+
+#### required python packages are in requirements.txt 
+#### pip install -r requirement.txt
+#### Please execute datafetch notebook before executing other notebooks

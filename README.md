@@ -18,8 +18,8 @@ If you are seeing this repo and unable to do changes or comment (as it's private
 ##### Saksham Lakhera 50611360
 ##### Rama Rao Vydadi 50604256
 
-#### Problem Statement :
-This analysis aims to uncover potential causes of mental health disorders by examining the behavioral patterns and histories of affected patients, ### leading to insights for better interventions.
+### Problem Statement :
+This analysis aims to uncover potential causes of mental health disorder.
 
 # Data Cleaning Steps
 ## 1. Handling Sparse Columns

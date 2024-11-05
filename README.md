@@ -14,10 +14,10 @@ If you are seeing this repo and unable to do changes or comment (as it's private
 Analysis to uncover potential causes of mental health disorders.
 
 Code structure:
-datafetch.ipynb - This file will download the required datasets from the URLs and store them locally. PLEASE EXECUTE THIS BEFORE RUNNING OTHER INDIVIDUAL NOTEBOOKS.
-EDA.ipynb - In this notebook we have gathered information about data-types, missing values, etc in the downloaded datasets. The data cleaning steps performed are noted in the markdowns. (Phase 1)
+- datafetch.ipynb - This file will download the required datasets from the URLs and store them locally. **PLEASE EXECUTE THIS BEFORE RUNNING OTHER INDIVIDUAL NOTEBOOKS.**
+- EDA.ipynb - In this notebook we have gathered information about data-types, missing values, etc in the downloaded datasets. The data cleaning steps performed are noted in the markdowns. (Phase 1)
 
-Each team member has their own individual notebooks:
+Each team member has an individual notebook:
 1. Sharan Raj Sivakumar (UB ID#: 50604183)
    - Hypothesis & EDA (Phase 1):
      - Early drug use, particularly during adolescence, is a risk factor for the development of mental health issues.

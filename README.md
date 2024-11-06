@@ -19,7 +19,9 @@ Each team member has an individual notebook:
      - Early drug use, particularly during adolescence, is a risk factor for the development of mental health issues.
      - Individuals who are married or widowed are less likely to experience suicidal thoughts compared to individuals who are single.
    - ML Models (Phase 2):(Phase 2 in notebook cells 26-95)
-     - Binary classification using XGBoost to check if someone has depression.
+     - Binary classification with Logistic Regression to check if someone has depression.
+     - Binary classification using XGBoost to check if someone has depression(Iteration 1 & 2).
+     - K-Means clustering to group individuals using various demographic and identitfying clusters with high sucidal thoughts.
       
 2. Apurva Umredkar (UB ID#: 50592382)
    - Hypothesis & EDA (Phase 1 in notebook cells 1-11):
@@ -48,7 +50,7 @@ Each team member has an individual notebook:
 
 All notebooks have a PDF version in this repository.
 
-**LAST UPDATE: Nov 5, 2024 (for phase 2 submission)
+**LAST UPDATE:** Nov 5, 2024 (for phase 2 submission)
 
 
 

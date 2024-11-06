@@ -29,7 +29,7 @@ Each team member has an individual notebook:
      - Clustering + Classification algorithms for identifying mental distress type in online gamers.
      - Regression algorithms for calculating anxiety, satisfaction with life and social phobia levels
        
-4. Saksham Lakhera (UB ID#: 50611360)
+3. Saksham Lakhera (UB ID#: 50611360)
    - Hypotheses & EDA (Phase 1):
      - Is smoking cigarettes a cause of mental health disorders?
      - Does being religious lower te rate of suicidal thoughts?
@@ -38,14 +38,14 @@ Each team member has an individual notebook:
    - ML Models (Phase 2):
      - Classifier for identifying depression in children
     
-5. Rama Rao Vydadi (UB ID#: 50604256)
-   - Hypotheses & EDA (Phase 1):
+4. Rama Rao Vydadi (UB ID#: 50604256) 
+   - Hypotheses & EDA (Phase 1 in notebook cells 1-72):
      - How does socio-economic status (income, education, employment status) influence the likelihood of experiencing mental health disorders?
      - What role does marijuana use play in the aggravation of mental health disorders?
      - What roles does hallucinogens play in mental health disorders?
-   - ML Models (Phase 2):
-     - Classifier to check if a person has bad mental health condition based on hallucinogens & marijuana use.
-     - Classifier to check if a person has bad mental health condition based on socio-economic status.   
+   - ML Models (Phase 2 in notebook cells 73-113):
+     - Classifier to detect poor mental health based on hallucinogen and marijuana use.
+     - Classifier to detect poor mental health based on socio-economic status.   
 
 All notebooks have a PDF version in this repository.
 

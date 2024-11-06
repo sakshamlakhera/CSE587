@@ -1,5 +1,3 @@
-# CSE587
-CSE587: Data Intensive Computing
 This repository is made for the semester-wide project for CSE587 Data Intensive Computing taught by Chen Xu at University at Buffalo (Fall'24 term).
 If you are seeing this repo and unable to do changes or comment (as it's private) reach out to sakshaml@buffalo.edu
 

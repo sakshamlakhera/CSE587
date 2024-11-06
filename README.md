@@ -3,8 +3,8 @@ If you are seeing this repo and unable to do changes or comment (as it's private
 
 **NOTE: Do NOT commit to develop directly, work in branches, and raise pull requests for submission during each phase**
 
-#### required python packages are in requirements.txt 
-#### pip install -r requirement.txt
+Required python packages are in requirements.txt 
+- pip install -r requirement.txt
 
 ### Team Problem Statement :
 Analysis to uncover potential causes of mental health disorders.

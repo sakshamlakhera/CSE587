@@ -22,11 +22,12 @@ Each team member has an individual notebook:
      - Binary classification using XGBoost to check if someone has depression.
       
 2. Apurva Umredkar (UB ID#: 50592382)
-   - Hypothesis & EDA (Phase 1):
+   - Hypothesis & EDA (Phase 1 in notebook cells 1-11):
      - Online gamers in countries with higher quality of life have lower levels of anxiety.
      - Younger online gamers have higher anxiety levels and are less satisfied with life.
-   - ML Models (Phase 2):
+   - ML Models (Phase 2 in notebook cells 12-29):
      - Clustering + Classification algorithms for identifying mental distress type in online gamers.
+     - Regression algorithms for calculating anxiety, satisfaction with life and social phobia levels
        
 4. Saksham Lakhera (UB ID#: 50611360)
    - Hypotheses & EDA (Phase 1):
@@ -36,7 +37,6 @@ Each team member has an individual notebook:
      - Parenting behaviors and there affects on a child's mental health.
    - ML Models (Phase 2):
      - Classifier for identifying depression in children
-     - 
     
 5. Rama Rao Vydadi (UB ID#: 50604256)
    - Hypotheses & EDA (Phase 1):

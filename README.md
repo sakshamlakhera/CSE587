@@ -15,10 +15,10 @@ Code structure:
 
 Each team member has an individual notebook:
 1. Sharan Raj Sivakumar (UB ID#: 50604183)
-   - Hypothesis & EDA (Phase 1):
+   - Hypothesis & EDA (Phase 1):(Phase 1 in notebook cells 1-26)
      - Early drug use, particularly during adolescence, is a risk factor for the development of mental health issues.
      - Individuals who are married or widowed are less likely to experience suicidal thoughts compared to individuals who are single.
-   - ML Models (Phase 2):
+   - ML Models (Phase 2):(Phase 2 in notebook cells 26-95)
      - Binary classification using XGBoost to check if someone has depression.
       
 2. Apurva Umredkar (UB ID#: 50592382)

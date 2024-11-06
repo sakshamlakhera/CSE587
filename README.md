@@ -31,7 +31,7 @@ Each team member has an individual notebook:
      - Clustering + Classification algorithms for identifying mental distress type in online gamers.
      - Regression algorithms for calculating anxiety, satisfaction with life and social phobia levels
        
-3. Saksham Lakhera (UB ID#: 50611360)
+3. Saksham Lakhera (UB ID#: 50611360) (I have done my analysis in these files "Saksham_Lakhera_50611360_P2_H1", "Saksham_Lakhera_50611360_P2_H2")
    - Hypotheses & EDA (Phase 1):
      - Is smoking cigarettes a cause of mental health disorders?
      - Does being religious lower te rate of suicidal thoughts?

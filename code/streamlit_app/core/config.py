@@ -8,7 +8,8 @@ QUESTION_MAPPINGS = {
         'Income': 'What is your income level?',
         'IRSEX': 'What is your sexual orientation?',
         'HOW OFTEN FELT SAD NOTHING COULD CHEER YOU UP': 'How often have you felt sad that nothing could cheer you up?',
-        'sad_depressed': 'Have you had several days or longer when you felt sad, empty, or depressed?'
+        'sad_depressed': 'Have you had several days or longer when you felt sad, empty, or depressed?',
+        'Metro_NonMetro': 'Do you stay in a Metro City?'
     },
     'gaming': {
         'Game': 'What game do you play the most?',

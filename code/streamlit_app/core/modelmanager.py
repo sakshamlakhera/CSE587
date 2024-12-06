@@ -30,6 +30,17 @@ class ModelManager:
             ''')
             conn.commit()
 
+    def model_exists(self, model_name, version):
+        with sqlite3.connect(self.db_path) as conn:
+            cursor = conn.cursor()
+            cursor.execute('''
+                SELECT 1 FROM model_registry 
+                WHERE model_name = ? AND model_version = ?
+            ''', (model_name, version))
+            
+            result = cursor.fetchone()
+            return result is not None
+
     def save_model(self, model_name, model_object, version="1.0", description=""):
         with sqlite3.connect(self.db_path) as conn:
             cursor = conn.cursor()
@@ -206,92 +217,8 @@ class ModelManager:
     
 if __name__ == "__main__":
     pass
-    # models = ModelManager("database.db")
 
-    # Saksham
-    # model_input = {'Age': [7],
-    #     'Drug_Use': ['No'],
-    #     'plays_game': ['No'],
-    #     'YEPCHKHW': ['Yes'],
-    #     'YEPHLPHW': ['Yes'],
-    #     'YO_MDEA2': ['No'],
-    #     'YEPCHORE': ['Yes'],
-    #     'YEPLMTTV': ['Yes'],
-    #     'YEPLMTSN': ['Yes'],
-    #     'YO_MDEA1': ['No'],
-    #     'YEPGDJOB': ['Yes'],
-    #     'YEPPROUD': ['Yes'],
-    #     'YEYARGUP': ['Yes'],
-    #     'YEPRTDNG': ['Yes'],
-    #     'NEWRACE2': [1]}
     
-    # model_output = models.run_models(pd.DataFrame.from_dict(model_input), "child_behavioral_model")
-
-    # Apurv
-    # model_input = {'Game': [0], 'Hours': [40], 'Residence': [44], 'age_first_marijuana': [18], 'age_first_blunt': [18], 'age_first_cocaine': [18], 'age_first_crack': [18], 'age_first_heroin': [18], 'YEPCHKHW': [0], 'YEPHLPHW': [0], 'YO_MDEA2': [0], 'YEPCHORE': [0], 'YEPLMTTV': [0], 'YEPLMTSN': [0], 'YO_MDEA1': [0], 'YEPGDJOB': [0], 'YEPPROUD': [0], 'YEYARGUP': [0], 'YEPRTDNG': [0], 'Age': [22]}
-    
-    # model_output = models.run_models(pd.DataFrame.from_dict(model_input), "gmh_model")
-    
-    # Rama
-
-    # model_input = {
-    #     'Employment': [1],
-    #     'Education': [1],
-    #     'Income': [1],
-    #     'IRSEX': [0],
-    #     'HOW OFTEN FELT SAD NOTHING COULD CHEER YOU UP': [1],
-    #     'sad_depressed': [0],
-    #     'Metro_NonMetro': [0]
-    # }
-    # model_output = models.run_models(pd.DataFrame.from_dict(model_input), "general_model")
-    # print(model_output)
-
-    # Sharan 
-    # model_input = {'MJAGE': [15], 'BLNTAGE': [0], 'COCAGE': [0], 'CRKAGE': [0], 'HERAGE': [0], 'HALLUCAGE': [0], 'METHAMAGE':[0], 'YO_MDEA1': [2], 'IRSEX': [1], 'Drug_Use': [1]}
-    # model_output = models.run_models(pd.DataFrame.from_dict(model_input), "youth_drug_abuse_model")
-    # print(model_output)
-
-#     models_to_insert = [
-#     {
-#         'name': 'gmh_model',
-#         'version': '1.0',
-#         'path': '/Users/sharanraj/git/CSE587/model/gmh_model.pickle',
-#         'description': 'Gaming Mental Health Model'
-#     },
-#     {
-#         'name': 'youth_drug_abuse_model',
-#         'version': '1.0',
-#         'path': '/Users/sharanraj/git/CSE587/model/youth_drug_abuse_model.pickle',
-#         'description': 'Youth Drug Abuse Model'
-#     },
-#     {
-#         'name': 'child_behavioral_model',
-#         'version': '1.0',
-#         'path': '/Users/sharanraj/git/CSE587/model/child_behavioral_model.pickle',
-#         'description': 'Child Behavioral Model'
-#     },
-#     {
-#         'name': 'general_model',
-#         'version': '1.0',
-#         'path': '/Users/sharanraj/git/CSE587/model/general_model.pkl',
-#         'description': 'General Prediction Model'
-#     }
-# ]
-    
-
-
-#     for model_info in models_to_insert:
-#         model_name = model_info['name']
-#         model_version = model_info['version']
-#         model_path = model_info['path']
-#         description = model_info.get('description', '')
-
-#         with open(model_path, 'rb') as f:
-#             model_object = pickle.load(f)
-#             print(type(model_object))
-#             # model_blob = pickle.dumps(model_object)  
-#             models.save_model(model_name, model_object, model_version, description)
-#             print(f"model: {model_name} saved")
 
 
 

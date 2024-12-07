@@ -38,6 +38,10 @@ def login_user(username, password):
     c.execute('SELECT * FROM users WHERE username = ? AND password = ?', (username, password))
     return c.fetchall()
 
+def check_user(username):
+    c.execute('SELECT * FROM users WHERE username = ?', (username, ))
+    return c.fetchall()
+
 # Create assessments table
 def create_assessment_table():
     c.execute('''

@@ -1,6 +1,6 @@
 import re
 import streamlit as st
-from utils.database import add_userdata, create_usertable, login_user
+from utils.database import add_userdata, create_usertable, login_user, check_user
 from utils.auth import hash_password
 import time
 
@@ -33,7 +33,7 @@ def signup():
         else:
             create_usertable()
             hashed_new_password = hash_password(new_password)
-            result = login_user(new_user, hashed_new_password)
+            result = check_user(new_user)
             if result:
                 st.error("An account with this email already exists.")
             else:

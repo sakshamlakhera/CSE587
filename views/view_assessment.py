@@ -4,6 +4,64 @@ import altair as alt
 from utils.database import get_assessments
 
 
+def interpret_anxiety(score):
+    if score <= 4:
+        return "Minimal Anxiety", "😊"
+    elif score <= 9:
+        return "Mild Anxiety", "🙂"
+    elif score <= 14:
+        return "Moderate Anxiety", "😐"
+    else:
+        return "Severe Anxiety", "😟"
+
+def interpret_satisfaction(score):
+    if score >= 31:
+        return "Extremely Satisfied with life", "😄"
+    elif score >= 26:
+        return "Satisfied with life", "🙂"
+    elif score >= 20:
+        return "Neutral or Slightly Satisfied with life", "😐"
+    elif score >= 15:
+        return "Slightly Dissatisfied with life", "😕"
+    elif score >= 10:
+        return "Dissatisfied with life", "😟"
+    else:
+        return "Extremely Dissatisfied with life", "😢"
+    
+def interpret_social_phobia(score):
+    if score <= 20:
+        return "No Social Phobia", "😊"
+    elif score <= 30:
+        return "Mild Social Phobia", "🙂"
+    elif score <= 40:
+        return "Moderate Social Phobia","😐"
+    elif score <= 50:
+        return "Severe Social Phobia", "😐"
+    else:
+        return "Very Severe Social Phobia", "😟"
+
+def interpret_mental_heath(score):
+    if score == 0:
+        return "Low Probability of mental health issues", "😄"
+    else:
+        return "High Probability of mental health issues", "😢"
+    
+def interpret_depressive_episode(score):
+    if score == 0:
+        return "Low Probability of severe Depressive Episode", "😄"
+    else:
+        return "High Probability of severe Depressive Episode", "😢"
+
+def interpret_total(score):
+    if score <= 20:
+        return "You are Super Healthy", "🧗‍♂️"
+    elif score <= 40:
+        return "Pleae take Care of your Mental Health", "🙍‍♂️"
+    elif score <= 60:
+        return "Please Visit your local Doctor", "😟"
+    else:
+        return "Please get Consultation ASAP", "😟"
+
 def view_assessment():
     # Sidebar Navigation
     with st.sidebar:
@@ -83,7 +141,7 @@ def view_assessment():
         .mark_line(point=True)
         .encode(
             x=alt.X("iteration:O", title="Iteration"),
-            y=alt.Y("value:Q", title="Score (%)"),
+            y=alt.Y("value:Q", title="Score"),
             color=alt.Color("variable:N", title="Metric"),
             tooltip=["iteration:O", "variable:N", "value:Q"],
             opacity=alt.condition(selection, alt.value(1), alt.value(0.2))
@@ -121,18 +179,25 @@ def view_assessment():
         st.subheader(f"Report for Iteration {selected_iteration}")
 
     # Display metrics in 2x4 format
-    st.metric("Total Score", f"{selected_report['total_score']:.2f}")
+    total_score_string, total_score_emoji = interpret_total(selected_report['total_score'])
+    st.metric(total_score_string, total_score_emoji)
 
-    cols = st.columns(4)
-    cols[0].metric("Anxiety", f"{selected_report['anxiety']}%")
-    cols[1].metric("Satisfaction", f"{selected_report['satisfaction']}%")
-    cols[2].metric("Social Phobia", f"{selected_report['social_phobia']}%")
-    cols[3].metric("Mental Health", f"{selected_report['mental_health']}%")
+    cols = st.columns(3)
+    anxiety_string, anxiety_emoji =interpret_anxiety(selected_report['anxiety'])
+    satisfaction_string, satisfaction_emoji =  interpret_satisfaction(selected_report['satisfaction'])
+    social_phobia_string, social_phobia_string_emoji =  interpret_social_phobia(selected_report['social_phobia'])
+    mental_health_string, mental_health_string_emoji = interpret_mental_heath(selected_report['mental_health'])
+    depressive_episode_string, depressive_episode_emoji = interpret_depressive_episode(selected_report['depressive_episode'])
 
-    cols = st.columns(4)
-    cols[0].metric("Depressive Episode", f"{selected_report['depressive_episode']}%")
+    cols[0].metric(anxiety_string, f"{selected_report['anxiety']}/21 {anxiety_emoji}")
+    cols[1].metric(satisfaction_string, f"{selected_report['satisfaction']}/35 {satisfaction_emoji}")
+    cols[2].metric(social_phobia_string, f"{selected_report['social_phobia']}/68 {social_phobia_string_emoji}")
 
-    # Summary Table
+    cols = st.columns(2)
+    cols[0].metric(mental_health_string, mental_health_string_emoji)
+    cols[1].metric(depressive_episode_string, depressive_episode_emoji)
+
+
     st.subheader("Summary of All Iterations")
     st.dataframe(assessments[["iteration", "date", "total_score"] + metrics])
 
@@ -148,7 +213,7 @@ def view_assessment():
     st.markdown(
         """
         <div style='text-align: center; margin-top: 50px; font-size: 14px; color: #777;'>
-        Made with ❤️ using Streamlit | <a href="https://example.com/privacy" target="_blank">Privacy Policy</a> | <a href="https://example.com/terms" target="_blank">Terms of Use</a>
+        Made with ❤️
         </div>
         """,
         unsafe_allow_html=True,

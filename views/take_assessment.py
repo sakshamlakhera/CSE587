@@ -88,17 +88,21 @@ def take_assessment():
     question_selection, models_needed = performQuestionSelection(user_details)
     #print(question_selection)
     # Fetch questions from the database
-    questions = get_questions_from_db(question_selection)
-    #print(questions)
+    
 
     # Initialize session state for responses and question index
     if "responses" not in st.session_state:
         st.session_state["responses"] = {}
     if "current_question" not in st.session_state:
         st.session_state["current_question"] = 0
+    
+    current_index = st.session_state["current_question"]
+    print(current_index)
+    questions = get_questions_from_db(question_selection)
 
     # Get the current question
-    current_index = st.session_state["current_question"]
+    print(current_index)
+    
 
     question = questions[current_index]['question']
     description = questions[current_index]['description']
@@ -125,7 +129,7 @@ def take_assessment():
     elif answer_type =='text':
         # Handle text input with range validation
         input_value = st.number_input(
-            "Enter your answer (10–100):", min_value=10, max_value=100, step=1, value=st.session_state.get("response", 18) 
+            "Enter your answer (0-100):", min_value=0, max_value=100, step=1, value=st.session_state.get("response", 0) 
         )
         model_map = input_value
     else:
@@ -136,12 +140,7 @@ def take_assessment():
             )
         model_map = options.index(input_value)
     
-    #print(input_value)
     st.session_state[f"response_{current_index}"] = (questions[current_index]['code'],input_value,model_map)
-    #print(current_index,st.session_state[f"response_{current_index}"])
-    ## here even after selection and printing, print give non for response_{i}
-    
-
     # Display the description below the question
     st.info(description)
 
@@ -172,7 +171,9 @@ def take_assessment():
             models = ModelManager("database.db")
             print(models_needed)
             total_score = 0
-            mental_health=depressive_episode=anxiety=satisfaction=social_phobia=0
+            mental_health=anxiety=social_phobia= 0
+            satisfaction = depressive_episode = None
+
             for model_name in models_needed:
                 if model_name == "child_behavioral_model":
                     depressive_episode = models.run_models(pd.DataFrame.from_dict(final_input_df), "child_behavioral_model")
@@ -185,32 +186,39 @@ def take_assessment():
                 if model_name == 'gmh_model':
                     anxiety ,satisfaction,  social_phobia = models.run_models(pd.DataFrame.from_dict(final_input_df), "gmh_model")
                     print('gmh_model',[anxiety ,satisfaction,  social_phobia ])
+            
+            if satisfaction == None:
+                satisfaction = 1
+            if depressive_episode == None:
+                depressive_episode = 1
+            
 
-            age_factor = max(1, (90 - user_details['age']) / 90)  # Normalized factor for age, more weight for younger people
-            depressive_weight = (1 - depressive_episode) * 20 * age_factor  # Weight for depressive episodes
-            mental_health_weight = mental_health * 30 * age_factor  # Weight for general mental health
-            anxiety_weight = anxiety * 15 * age_factor  # Weight for anxiety
-            social_phobia_weight = social_phobia * 15 * age_factor  # Weight for social phobia
-            satisfaction_weight = (1 - satisfaction) * 20 * age_factor  # Satisfaction reduces score
+            age_factor = max(0, min(1, (90 - user_details['age']) / 75)) # Normalized factor for age, more weight for younger people
+            depressive_weight = 30 * (1 - depressive_episode) * age_factor  # Weight for depressive episodes
+            mental_health_weight = 20 * mental_health * age_factor  # Weight for general mental health
+            anxiety_weight = 15 * anxiety * age_factor  # Weight for anxiety
+            social_phobia_weight = 15 * social_phobia * age_factor  # Weight for social phobia
+            satisfaction_weight = 20 * (1 - satisfaction) * age_factor  # Satisfaction reduces score
 
             total_score = depressive_weight + mental_health_weight + anxiety_weight + social_phobia_weight + satisfaction_weight
+            total_score = min(total_score,100)
 
             add_assessment(st.session_state["username"], 
                            responses, 
                            total_score=int(total_score), 
-                           anxiety=int(anxiety*100), 
-                           satisfaction = int(satisfaction*100),
-                           social_phobia=int(social_phobia*100),
+                           anxiety=int(anxiety*21), 
+                           satisfaction = int(satisfaction*30 + 5),
+                           social_phobia=int(social_phobia*68),
                            mental_health=int(mental_health*100),
                            depressive_episode=int((1-depressive_episode)*100))  # Adjust total_score as needed
             st.success("Your assessment has been submitted!")
 
             # Reset state and navigate to view assessments
             st.session_state["responses"] = {}
-            st.session_state["current_question"] = 0
             with st.spinner("Loading..."):
                 st.balloons()
                 time.sleep(2)
+            st.session_state["current_question"] = 0
             st.session_state["page"] = "view_assessment"
             st.rerun()
 
@@ -218,7 +226,7 @@ def take_assessment():
     st.markdown(
         """
         <div style='text-align: center; margin-top: 50px; font-size: 14px; color: #777;'>
-        Made with ❤️ | <a href="https://example.com/privacy" target="_blank">Privacy Policy</a> | <a href="https://example.com/terms" target="_blank">Terms of Use</a>
+        Made with ❤️
         </div>
         """,
         unsafe_allow_html=True,

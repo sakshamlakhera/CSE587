@@ -106,13 +106,13 @@ questions = questions = [
 
 ("Gaming", "Hours", { 
 
-"question": "How many hours do you play games each day?", 
+"question": "How many hours do you play the game every week?", 
 
-"description": "Select the approximate daily gaming time.", 
+"description": "Enter approximate weekly gaming time.", 
 
 "answer_type": "text",
 
-"range": [10, 100] 
+"range": [0, 168] 
 
 }), 
 
@@ -120,7 +120,7 @@ questions = questions = [
 
 "question": "What is your country of residence?", 
 
-"description": "Enter the name of your country.", 
+"description": "Select the name of your country.", 
 
 "answer_type": "drop-down" ,
 "options": ['Albania', 'Algeria', 'Argentina', 'Australia', 'Austria',
@@ -151,11 +151,11 @@ questions = questions = [
 
 # Substance Use Questions 
 
-("Substance Use", "age_first_marijuana", { 
+("Substance Use", "MJAGE", { 
 
 "question": "At what age did you first use Marijuana?", 
 
-"description": "Enter the age when you first used Marijuana.", 
+"description": "Enter the age when you first used Marijuana. Enter zero if not done", 
 
 "answer_type": "text", 
 
@@ -163,11 +163,11 @@ questions = questions = [
 
 }), 
 
-("Substance Use", "age_first_blunt", { 
+("Substance Use", "BLNTAGE", { 
 
 "question": "At what age did you first use a Blunt?", 
 
-"description": "Enter the age when you first used a Blunt.", 
+"description": "Enter the age when you first used a Blunt. Enter zero if not done", 
 
 "answer_type": "text", 
 
@@ -175,11 +175,11 @@ questions = questions = [
 
 }), 
 
-("Substance Use", "age_first_cocaine", { 
+("Substance Use", "COCAGE", { 
 
 "question": "At what age did you first use Cocaine?", 
 
-"description": "Enter the age when you first used Cocaine.", 
+"description": "Enter the age when you first used Cocaine. Enter zero if not done", 
 
 "answer_type": "text", 
 
@@ -187,11 +187,11 @@ questions = questions = [
 
 }), 
 
-("Substance Use", "age_first_crack", { 
+("Substance Use", "CRKAGE", { 
 
 "question": "At what age did you first use Crack Cocaine?", 
 
-"description": "Enter the age when you first used Crack Cocaine.", 
+"description": "Enter the age when you first used Crack Cocaine. Enter zero if not done", 
 
 "answer_type": "text", 
 
@@ -199,17 +199,42 @@ questions = questions = [
 
 }), 
 
-("Substance Use", "age_first_heroin", { 
+("Substance Use", "HERAGE", { 
 
 "question": "At what age did you first use Heroin?", 
 
-"description": "Enter the age when you first used Heroin.", 
+"description": "Enter the age when you first used Heroin. Enter zero if not done", 
 
 "answer_type": "text", 
 
 "range": [10, 100] 
 
 }), 
+
+("Substance Use", "HERAGE", { 
+
+"question": "At what age did you first use Hallucinogens (LSD, mushrooms, etc.)?", 
+
+"description": "Enter the age when you first used Hallucinogens. Enter zero if not done", 
+
+"answer_type": "text", 
+
+"range": [10, 100] 
+
+}), 
+
+("Substance Use", "METHAMAGE", { 
+
+"question": "At what age did you first use Methamphetamine?", 
+
+"description": "Enter the age when you first used Methamphetamine. Enter zero if not done", 
+
+"answer_type": "text", 
+
+"range": [10, 100] 
+
+}), 
+
 
  
 
@@ -278,7 +303,7 @@ questions = questions = [
 
 ("Kid-Specific", "YEPLMTTV", { 
 
-"question": "Have your parents limit yout TV watching time?", 
+"question": "Have your parents limited your TV watching time in past few months?", 
 
 "description": "Select which applies.", 
 
@@ -290,7 +315,7 @@ questions = questions = [
 
 ("Kid-Specific", "YEPLMTSN", { 
 
-"question": "Have your parents limited your kid's playtime in past few months?", 
+"question": "Have your parents limited your playtime in past few months?", 
 
 "description": "Select which applies.", 
 
@@ -326,7 +351,7 @@ questions = questions = [
 
 ("Kid-Specific", "YEPPROUD", { 
 
-"question": "Do you let your kid know you are proud of them?", 
+"question": "Does your parents let you know that they are proud of you?", 
 
 "description": " Select which applies.", 
 
@@ -338,9 +363,9 @@ questions = questions = [
 
 ("Kid-Specific", "YEYARGUP", { 
 
-"question": "how frequently you have arguments with your parents/guardian?", 
+"question": "how frequently you have arguments with your parents/guardian in a month?", 
 
-"description": "Select Yes or No.", 
+"description": "Chose an Average number of times.", 
 
 "answer_type": "radio", 
 
@@ -350,7 +375,7 @@ questions = questions = [
 
 ("Kid-Specific", "YEPRTDNG", { 
 
-"question": "Do you talk to your kid about the bad effects of drugs?", 
+"question": "Does your parents talk about bad effects of drugs?", 
 
 "description": "Select Yes or No.", 
 

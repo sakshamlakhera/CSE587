@@ -90,12 +90,12 @@ def render_dashboard_content():
     # Summary section
     col1, col2, col3 = st.columns(3)
 
-    with col1:
-        st.metric(label="Total Assessments Taken", value="15")  # Replace with actual data
-    with col2:
-        st.metric(label="Current Mood Trend", value="Positive")  # Replace with actual data
-    with col3:
-        st.metric(label="Longest Streak", value="5 Weeks")  # Replace with actual data
+    # with col1:
+    #     st.metric(label="Total Assessments Taken", value="15")  # Replace with actual data
+    # with col2:
+    #     st.metric(label="Current Mood Trend", value="Positive")  # Replace with actual data
+    # with col3:
+    #     st.metric(label="Longest Streak", value="5 Weeks")  # Replace with actual data
 
     # Additional Insights
     st.subheader("Quick Tips for a Healthy Mind:")
@@ -108,16 +108,100 @@ def render_dashboard_content():
         """
     )
 
-    # Footer
     st.markdown(
         """
-        <div style='text-align: center; margin-top: 50px; font-size: 14px; color: #777;'>
-        Made with ❤️ using Streamlit | <a href="https://example.com/privacy" target="_blank">Privacy Policy</a> | <a href="https://example.com/terms" target="_blank">Terms of Use</a>
-        </div>
+        <style>
+        .fact-header {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4A4A4A;
+            text-align: center;
+            text-decoration: underline;
+        }
+        </style>
+        <div class='fact-header'>Our Analysis</div>
         """,
         unsafe_allow_html=True,
     )
 
+    
+    st.write(
+        """
+        #### Young Gamers and Anxiety:
+        - Young gamers (18–25) experience higher anxiety levels.
+        - Ages 18–20 & 21–25 feel afraid as if something awful might happen (GAD-7).
+        - Ages 25–30 feel restless and find it hard to sit still (GAD-5).
+        - Ages 30+ worry too much and can't stop/control worrying (GAD-2).
+        """
+    )
+
+    st.write(
+        """
+        #### Parenting and Child Mental Health:
+        - Praising children significantly reduces their depression levels.
+        - Moderately limiting TV and playtime benefits mental health. Extreme restrictions may lead to depression.
+        - Parental involvement in schoolwork positively affects children's happiness.
+        - Frequent arguments or fights between parents and children increase depression risk.
+        - Talking to children about the impacts of intoxicants slightly improves mental health.
+        """
+    )
+
+    st.write(
+        """
+        #### Socio-Economic Status and Depression:
+        - Individuals earning less than $20,000 are more likely to experience depression.
+        - Wealthier individuals tend to report lower levels of depression.
+        """
+    )
+
+    st.write(
+        """
+            #### Early drug use and its effects on mental health issues:
+            - 83.4% of individuals who did not use drugs early are not depressed, while 16.6% are depressed.
+            - In contrast, 65.6% of individuals who used drugs early are not depressed, but 34.4% suffer from depression.
+            - The T-statistic (43.341) and P-value (0) strongly indicate a relationship between early drug use and mental health issues.
+            - This suggests that early drug use could be a risk factor for depression, as the "Drug Use" group shows a significantly higher proportion of depression compared to the "No Drug Use" group.
+        """
+    )
+    
+    st.write(
+        """
+        #### Religious Belief and Mental Health:
+        - Individuals with strong religious beliefs are less susceptible to suicidal thoughts.
+        - People with "no belief" have the highest rates of suicidal thoughts.
+        - Faith provides a sense of purpose, community, and hope, which combats feelings of despair.
+        - Having religious beliefs offers protection against depression and suicidal ideation.
+        """
+    )
+
+    st.write(
+        """
+        #### Insurance and Mental Health:
+        - High-income individuals without insurance are more likely to be depressed than those with insurance.
+        - Insurance provides a sense of safety and reduces stress about medical emergencies.
+        - A high-income individual without insurance is more susceptible to mental health issues compared to their insured counterparts.
+        - In conclusion, having insurance positively impacts mental health, especially for individuals with higher incomes.
+        """
+    )
+
+    st.write(
+        """
+        #### Smoking and Depression:
+        - Smoking is not a direct factor for depression but an indirect one influenced by societal, financial, and personal causes.
+        - Low-income individuals are advised to avoid cigarette smoking as it can worsen mental health issues.
+        - Withdrawal symptoms after quitting smoking are known to cause anxiety and depression.
+        - For individuals who continue smoking, their societal and financial stress plays a larger role than smoking itself.
+        """
+    )
+    # Footer
+    st.markdown(
+        """
+        <div style='text-align: center; margin-top: 50px; font-size: 14px; color: #777;'>
+        Made with ❤️ 
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
 if __name__ == "__main__":
     dashboard()

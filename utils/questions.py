@@ -242,7 +242,7 @@ questions = questions = [
 
 ("Kid-Specific", "NEWRACE2", { 
 
-"question": "What is yout Race?", 
+"question": "What is your Race?", 
 
 "description": "Select which applies", 
 
@@ -363,7 +363,7 @@ questions = questions = [
 
 ("Kid-Specific", "YEYARGUP", { 
 
-"question": "how frequently you have arguments with your parents/guardian in a month?", 
+"question": "How frequently you have arguments with your parents/guardian in a month?", 
 
 "description": "Chose an Average number of times.", 
 

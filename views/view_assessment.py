@@ -60,7 +60,7 @@ def interpret_total(score):
     elif score <= 60:
         return "Please Visit your local Doctor", "😟"
     else:
-        return "Please get Consultation ASAP", "😟"
+        return "Please get Consultation ASAP", "😢"
 
 def view_assessment():
     # Sidebar Navigation
@@ -123,9 +123,9 @@ def view_assessment():
     assessments = assessments.sort_values("date").reset_index(drop=True)
     assessments["iteration"] = assessments.index + 1
 
-    # Calculate total score as average of the 5 metrics
+    # # Calculate total score as average of the 5 metrics
     metrics = ["anxiety", "satisfaction", "social_phobia", "mental_health", "depressive_episode"]
-    assessments["total_score"] = assessments[metrics].mean(axis=1)
+    # assessments["total_score"] = assessments[metrics].mean(axis=1)
 
     # Trend Visualization (Iteration-wise)
     st.subheader("Trend Visualization")
@@ -153,14 +153,6 @@ def view_assessment():
     # Display the chart
     st.altair_chart(trend_chart, use_container_width=True)
 
-    # 10-iteration average
-    if len(assessments) >= 10:
-        st.subheader("10-Iteration Average")
-        avg_data = assessments.tail(10).mean()
-        avg_df = avg_data[metrics].reset_index()
-        avg_df.columns = ["Metric", "Average Score (%)"]
-        st.table(avg_df)
-
     # Dropdown to view reports
     st.sidebar.markdown("### View Reports")
     dropdown_options = ["Latest"] + assessments["iteration"].tolist()
@@ -181,21 +173,26 @@ def view_assessment():
     # Display metrics in 2x4 format
     total_score_string, total_score_emoji = interpret_total(selected_report['total_score'])
     st.metric(total_score_string, total_score_emoji)
+    if selected_report['anxiety'] != -1:
+        cols = st.columns(3)
+        anxiety_string, anxiety_emoji =interpret_anxiety(selected_report['anxiety'])
+        satisfaction_string, satisfaction_emoji =  interpret_satisfaction(selected_report['satisfaction'])
+        social_phobia_string, social_phobia_string_emoji =  interpret_social_phobia(selected_report['social_phobia'])
+        cols[0].metric(anxiety_string, f"{selected_report['anxiety']}/21 {anxiety_emoji}")
+        cols[1].metric(satisfaction_string, f"{selected_report['satisfaction']}/35 {satisfaction_emoji}")
+        cols[2].metric(social_phobia_string, f"{selected_report['social_phobia']}/68 {social_phobia_string_emoji}")
 
-    cols = st.columns(3)
-    anxiety_string, anxiety_emoji =interpret_anxiety(selected_report['anxiety'])
-    satisfaction_string, satisfaction_emoji =  interpret_satisfaction(selected_report['satisfaction'])
-    social_phobia_string, social_phobia_string_emoji =  interpret_social_phobia(selected_report['social_phobia'])
-    mental_health_string, mental_health_string_emoji = interpret_mental_heath(selected_report['mental_health'])
-    depressive_episode_string, depressive_episode_emoji = interpret_depressive_episode(selected_report['depressive_episode'])
-
-    cols[0].metric(anxiety_string, f"{selected_report['anxiety']}/21 {anxiety_emoji}")
-    cols[1].metric(satisfaction_string, f"{selected_report['satisfaction']}/35 {satisfaction_emoji}")
-    cols[2].metric(social_phobia_string, f"{selected_report['social_phobia']}/68 {social_phobia_string_emoji}")
-
-    cols = st.columns(2)
-    cols[0].metric(mental_health_string, mental_health_string_emoji)
-    cols[1].metric(depressive_episode_string, depressive_episode_emoji)
+    if selected_report['mental_health'] != -1 or selected_report['depressive_episode'] != -1:
+        col_count = 0
+        mental_health_string, mental_health_string_emoji = interpret_mental_heath(selected_report['mental_health'])
+        depressive_episode_string, depressive_episode_emoji = interpret_depressive_episode(selected_report['depressive_episode'])
+        cols = st.columns(2)
+        if selected_report['mental_health'] != -1:
+            cols[col_count].metric(mental_health_string, mental_health_string_emoji)
+            col_count = col_count + 1
+        if selected_report['depressive_episode'] != -1:
+            cols[col_count].metric(depressive_episode_string, depressive_episode_emoji)
+            col_count = col_count + 1
 
 
     st.subheader("Summary of All Iterations")

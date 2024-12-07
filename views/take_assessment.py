@@ -171,46 +171,58 @@ def take_assessment():
             models = ModelManager("database.db")
             print(models_needed)
             total_score = 0
-            mental_health=anxiety=social_phobia= 0
-            satisfaction = depressive_episode = None
+            mental_health=anxiety=social_phobia= -1
+            satisfaction = depressive_episode = not_satisfied = anxiety_weight= social_phobia_weight= -1
+            assess_count = 0
 
             for model_name in models_needed:
                 if model_name == "child_behavioral_model":
                     depressive_episode = models.run_models(pd.DataFrame.from_dict(final_input_df), "child_behavioral_model")
-                    print('depressive_episode',depressive_episode)
+                    depressive_episode= int((1-depressive_episode)*100)
+                    assess_count = assess_count + 1
                     total_score = float(depressive_episode)+100/user_details['age']
                 if model_name == 'general_model':
                     mental_health = models.run_models(pd.DataFrame.from_dict(final_input_df), "general_model")
+                    mental_health = mental_health * 100
+                    assess_count = assess_count + 1
                 if model_name == 'youth_drug_abuse_model':
                     mental_health = models.run_models(pd.DataFrame.from_dict(final_input_df), "youth_drug_abuse_model")
+                    mental_health = mental_health * 100
+                    assess_count = assess_count + 1
                 if model_name == 'gmh_model':
                     anxiety ,satisfaction,  social_phobia = models.run_models(pd.DataFrame.from_dict(final_input_df), "gmh_model")
-                    print('gmh_model',[anxiety ,satisfaction,  social_phobia ])
-            
-            if satisfaction == None:
-                satisfaction = 1
-            if depressive_episode == None:
-                depressive_episode = 1
+                    not_satisfied = (1 - satisfaction) * 100
+                    anxiety_weight = anxiety * 100
+                    social_phobia_weight = social_phobia * 100
+
+                    anxiety = anxiety * 21
+                    satisfaction = satisfaction*30 + 5
+                    assess_count = assess_count + 3
+                    social_phobia = social_phobia * 68
+                    #print('gmh_model',[anxiety ,satisfaction,  social_phobia ])
             
 
-            age_factor = max(0, min(1, (90 - user_details['age']) / 75)) # Normalized factor for age, more weight for younger people
-            depressive_weight = 30 * (1 - depressive_episode) * age_factor  # Weight for depressive episodes
-            mental_health_weight = 20 * mental_health * age_factor  # Weight for general mental health
-            anxiety_weight = 15 * anxiety * age_factor  # Weight for anxiety
-            social_phobia_weight = 15 * social_phobia * age_factor  # Weight for social phobia
-            satisfaction_weight = 20 * (1 - satisfaction) * age_factor  # Satisfaction reduces score
+            age_factor = max(0, min(1, (90 - user_details['age']) / 72)) # Normalized factor for age, more weight for younger people
+            depressive_weight = max(0, depressive_episode ) # Weight for depressive episodes
+            mental_health_weight = max(0, mental_health)  # Weight for general mental health
+            anxiety_weight = max(0,anxiety_weight)  # Weight for anxiety
+            social_phobia_weight = max(0, social_phobia_weight)  # Weight for social phobia
+            satisfaction_weight = max(0, not_satisfied) # Satisfaction reduces score
+            print("total count is ", assess_count)
+            print(depressive_weight, mental_health_weight, anxiety_weight, social_phobia_weight, satisfaction_weight)
 
-            total_score = depressive_weight + mental_health_weight + anxiety_weight + social_phobia_weight + satisfaction_weight
+            total_score = (depressive_weight + mental_health_weight + anxiety_weight + social_phobia_weight + satisfaction_weight) / assess_count
             total_score = min(total_score,100)
+            print("toal is ",total_score)
 
             add_assessment(st.session_state["username"], 
                            responses, 
                            total_score=int(total_score), 
-                           anxiety=int(anxiety*21), 
-                           satisfaction = int(satisfaction*30 + 5),
-                           social_phobia=int(social_phobia*68),
-                           mental_health=int(mental_health*100),
-                           depressive_episode=int((1-depressive_episode)*100))  # Adjust total_score as needed
+                           anxiety=int(anxiety), 
+                           satisfaction = int(satisfaction),
+                           social_phobia=int(social_phobia),
+                           mental_health=int(mental_health),
+                           depressive_episode=int(depressive_episode))  # Adjust total_score as needed
             st.success("Your assessment has been submitted!")
 
             # Reset state and navigate to view assessments

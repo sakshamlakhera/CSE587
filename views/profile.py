@@ -7,6 +7,16 @@ import hashlib
 def connect_db():
     return sqlite3.connect('data.db', check_same_thread=False)
 
+def delete_user(username):
+    conn = connect_db()
+    cursor = conn.cursor()
+    # Delete assessments for the user
+    cursor.execute("DELETE FROM assessments WHERE username = ?", (username,))
+    # Delete the user record
+    cursor.execute("DELETE FROM users WHERE username = ?", (username,))
+    conn.commit()
+    conn.close()
+
 # Fetch user details
 def fetch_user_details(username):
     conn = connect_db()
@@ -154,6 +164,13 @@ def profile_section():
     st.write(f"**Age:** {user_details.get('age', 0)}")
     st.write(f"**Gamer:** {'Yes' if user_details.get('is_gamer', False) else 'No'}")
     st.write(f"**Takes Intoxicants:** {'Yes' if user_details.get('takes_intoxicants', False) else 'No'}")
+
+    st.subheader("Danger Zone")
+    if st.button("Delete Your Account"):
+        delete_user(username)
+        st.success("Your account has been deleted. You will be logged out.")
+        st.session_state["page"] = "login"
+        st.rerun
 
     # Footer
     st.markdown(

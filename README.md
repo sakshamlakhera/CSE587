@@ -28,8 +28,8 @@ Code/repository structure
    - core - source code for ML models and database management (version control)
    - utils/database - source code to initialize and connect to the database.
 - app.py - main driver program for the web app.
-- data.db - holds user specific data
-- database.db - holds backend data (questionnaire & machine learning models)
+- data.db - holds user specific data & questionnaire data
+- database.db - holds backend data (machine learning models)
 - requirements.txt - contains all the python packages with versions used in this project. PLEASE INSTALL THESE BEFORE EXECUTING APP LOCALLY.
        
 - Notebooks folder:

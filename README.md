@@ -6,8 +6,11 @@ If you are seeing this repository and unable to do changes or comment (as it's p
 INSTRUCTIONS TO BUILD THE APP FROM SOURCE CODE
 ---
 1. Clone the repository.
-2. Install all dependencies (python packages with matched versions) by running the command ``` pip3 install -r requirements.txt``` in the terminal.
-4. Execute the Streamlit app by running the command ```streamlit run app.py``` in the terminal.
+2. Create a new virtual environment in python and activate it by using the following commands:
+   - ```python3 -m venv <virtual_environment_name>``` or ```conda create <virtual_environment_name>``` if using Anaconda.
+   - Activate the environment: ```./<virtual_environment_name>/Scripts/activate``` (Windows) or ```source <virtual_environment_name>/bin/activate``` (macOS/Linux) or ```conda activate <virtual_environment_name>``` (Anaconda)
+4. Install all dependencies (python packages with matched versions) by running the command ```pip3 install -r requirements.txt``` in the terminal.
+5. Execute the Streamlit app by running the command ```streamlit run app.py``` in the terminal. Web app should open in localhost.
 
 PROBLEM STATEMENT
 ---
@@ -19,7 +22,7 @@ PROJECT HIGHLIGHTS
 - The Streamlit app has been deployed on the Streamlit Community Cloud and can be accessed via the link: https://mentalhealthevaluation.streamlit.app/
 - We have added version control to ensure the web app fetches the latest models.
 
-Code/repository structure
+CODE/REPOSITORY STRUCTURE
 ---
 - models - trained machine learning models in .pickle format deployed in the backend of the Streamlit app.
 - utils - source code for database setup and user management.

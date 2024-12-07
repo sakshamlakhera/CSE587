@@ -22,7 +22,7 @@ PROJECT HIGHLIGHTS
 - The Streamlit app has been deployed on the Streamlit Community Cloud and can be accessed via the link: https://mentalhealthevaluation.streamlit.app/
 - We have added version control to ensure the web app fetches the latest models.
 
-Code/repository structure
+CODE/REPOSITORY STRUCTURE
 ---
 - models - trained machine learning models in .pickle format deployed in the backend of the Streamlit app.
 - utils - source code for database setup and user management.

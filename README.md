@@ -6,7 +6,7 @@ If you are seeing this repository and unable to do changes or comment (as it's p
 INSTRUCTIONS TO BUILD THE APP FROM SOURCE CODE
 ---
 1. Clone the repository.
-2. Create a new virtual environment in python (use version Python 3.13.0) and activate it by using the following commands:
+2. Create a new virtual environment in python (use Python version 3.13.0) and activate it by using the following commands:
    - ```python3 -m venv <virtual_environment_name>``` or ```conda create <virtual_environment_name>``` if using Anaconda.
    - Activate the environment: ```./<virtual_environment_name>/Scripts/activate``` (Windows) or ```source <virtual_environment_name>/bin/activate``` (macOS/Linux) or ```conda activate <virtual_environment_name>``` (Anaconda)
 4. Install all dependencies (python packages with matched versions) by running the command ```pip3 install -r requirements.txt``` in the terminal.

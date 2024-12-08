@@ -12,6 +12,11 @@ INSTRUCTIONS TO BUILD THE APP FROM SOURCE CODE
 4. Install all dependencies (python packages with matched versions) by running the command ```pip3 install -r requirements.txt``` in the terminal.
 5. Execute the Streamlit app by running the command ```streamlit run app.py``` in the terminal. Web app should open in localhost.
 
+NOTE TO GRADER
+---
+1. The video demonstration for the web-platform has been uploaded in the root folder named **demo.mp4**
+2. The project report has been written in an academic paper format and uploaded in the root folder named **report.pdf**
+
 PROBLEM STATEMENT
 ---
 Analysis to uncover potential causes of mental health disorders.
@@ -20,6 +25,9 @@ PROJECT HIGHLIGHTS
 ---
 - We have created an interactive web app for users to take assessment to evaluate the aspect of their mental health they might be struggling with.
 - The Streamlit app has been deployed on the Streamlit Community Cloud and can be accessed via the link: https://mentalhealthevaluation.streamlit.app/
+   - You may use the following dummy credentials for testing purposes (these are stored in the database):
+      - user: saksham@gmail.com
+      - password: 1234
 - We have added version control to ensure the web app fetches the latest models.
 
 CODE/REPOSITORY STRUCTURE

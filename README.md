@@ -28,6 +28,7 @@ PROJECT HIGHLIGHTS
    - You may use the following dummy credentials for testing purposes (these are stored in the database):
       - user: saksham@gmail.com
       - password: 1234
+- The assessment on the web-platform can dynamically adjust based on the user's profile data.
 - We have added version control to ensure the web app fetches the latest models.
 
 CODE/REPOSITORY STRUCTURE

@@ -28,7 +28,9 @@ PROJECT HIGHLIGHTS
    - You may use the following dummy credentials for testing purposes (these are stored in the database):
       - user: saksham@gmail.com
       - password: 1234
-- The assessment on the web-platform can dynamically adjust based on the user's profile data.
+- We have designed a login/signup page, profile update page which persists data using CRUD operations.
+- The assessment on the web-platform can dynamically adjust based on the user's profile data. You can try changing your age, drinking/substance/gaming habits in the profile section. Eg Age=16 and Gamer=Y gives assessment with 15 question, whereas, Age=26 & Drugs=Y & Gamer=N gives 7 questions.
+- We have persisted the assessment in a separate interactive dashboard under the "View Dashboard" page where users can view and download their assessment history.
 - We have added version control to ensure the web app fetches the latest models.
 
 CODE/REPOSITORY STRUCTURE
